@@ -23,3 +23,5 @@ VALUES ('Sam Smith', 34),
 INSERT INTO species (name)
 VALUES ('Pokemon'),
 ('Digimon');
+
+UPDATE animals SET species_id = CASE WHEN name like '%mon' THEN 2 ELSE 1 END;
