@@ -72,3 +72,15 @@ SELECT * FROM visits JOIN animals ON animals_id = animals.id JOIN vets ON vets_i
 SELECT COUNT(*) FROM vets v JOIN visits ON v.id = visits.vets_id LEFT JOIN specializations s ON v.id = s.vets_id LEFT JOIN animals a ON animals_id = a.id WHERE s.species_id != a.species_id OR s.species_id IS NULL;
 -- What specialty should Maisy Smith consider getting? Look for the species she gets the most.
 SELECT animals.name, COUNT(animals.name) FROM visits JOIN vets ON vets_id = vets.id JOIN animals ON animals_id = animals.id WHERE vets.name = 'Maisy Smith' GROUP BY animals.name;
+
+SELECT COUNT(*) FROM visits where animal_id = 4;
+--before optimize animal_id: Execution Time: 1108.261 ms
+-- after optimize animal_id: Execution Time: 224.968 ms
+
+SELECT * FROM visits where vet_id = 2;
+-- before optimize vet_id: Execution Time: 1517.477 ms
+-- after optimize vet_id: Execution Time: 909.278 ms
+
+SELECT * FROM owners where email = 'owner_18327@mail.com';
+-- before optimize owners email: Execution Time: 838.404 ms
+-- after optimize owners email:  Execution Time: 0.057 ms
