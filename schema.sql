@@ -29,6 +29,11 @@ CREATE TABLE species (
 
 ALTER TABLE animals DROP species;
 
+CREATE INDEX visits_animal_id_asc ON visits(animal_id ASC);
+CREATE INDEX visits_vet_id_asc ON visits(vet_id ASC);
+CREATE INDEX owners_email_asc ON owners(email ASC);
+
+
 ALTER TABLE animals ADD species_id INT;
 
 ALTER TABLE animals 
