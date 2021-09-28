@@ -64,7 +64,10 @@ CREATE TABLE "medical_histories_treatments" (
     REFERENCES medical_histories (id)
 );
 
+CREATE INDEX treatment_id ON invoice_items(treatment_id);
 CREATE INDEX patients_id ON medical_histories(patient_id);
 CREATE INDEX medical_history_id ON invoices(medical_history_id);
 CREATE INDEX invoice_id ON invoice_items(invoice_id);
-CREATE INDEX treatment_id ON invoice_items(treatment_id);
+CREATE INDEX treatment_id ON medical_histories_treatments(treatment_id);
+CREATE INDEX medical_history_id ON medical_histories_treatments(medical_histories_id);
+
