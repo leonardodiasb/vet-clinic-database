@@ -1,7 +1,7 @@
 CREATE DATABASE clinic;
 
 CREATE TABLE "medical_histories" (
-  "id" int,
+  "id" int GENERATED ALWAYS AS IDENTITY,
   "admitted_at" timestamp,
   "patient_id" int,
   "status" varchar,
@@ -12,21 +12,21 @@ CREATE TABLE "medical_histories" (
 );
 
 CREATE TABLE "treatments" (
-  "id" int,
+  "id" int GENERATED ALWAYS AS IDENTITY,
   "type" varchar,
   "name" varchar,
   PRIMARY KEY ("id")
 );
 
 CREATE TABLE "patients" (
-  "id" int,
+  "id" int GENERATED ALWAYS AS IDENTITY,
   "name" varchar,
   "date_of_birth" date,
   PRIMARY KEY ("id")
 );
 
 CREATE TABLE "invoices" (
-  "id" int,
+  "id" int GENERATED ALWAYS AS IDENTITY,
   "total_amount" decimal,
   "generated_at" timestamp,
   "payed_at" timestamp,
@@ -38,7 +38,7 @@ CREATE TABLE "invoices" (
 );
 
 CREATE TABLE "invoice_items" (
-  "id" int,
+  "id" int GENERATED ALWAYS AS IDENTITY,
   "unit_price" decimal,
   "quantity" int,
   "total_price" decimal,
@@ -63,3 +63,8 @@ CREATE TABLE "medical_histories_treatments" (
     FOREIGN KEY (medical_history_id)
     REFERENCES medical_histories (id)
 );
+
+CREATE INDEX patients_id ON medical_histories(patient_id);
+CREATE INDEX medical_history_id ON invoices(medical_history_id);
+CREATE INDEX invoice_id ON invoice_items(invoice_id);
+CREATE INDEX treatment_id ON invoice_items(treatment_id);
